@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -36,6 +38,31 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $prenom;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $pays;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Adresse::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $adresse;
+
+    public function __construct()
+    {
+        $this->adresse = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -112,4 +139,71 @@ class User implements UserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getPays(): ?string
+    {
+        return $this->pays;
+    }
+
+    public function setPays(string $pays): self
+    {
+        $this->pays = $pays;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Adresse[]
+     */
+    public function getAdresse(): Collection
+    {
+        return $this->adresse;
+    }
+
+    public function addAdresse(Adresse $adresse): self
+    {
+        if (!$this->adresse->contains($adresse)) {
+            $this->adresse[] = $adresse;
+            $adresse->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdresse(Adresse $adresse): self
+    {
+        if ($this->adresse->removeElement($adresse)) {
+            // set the owning side to null (unless already changed)
+            if ($adresse->getUser() === $this) {
+                $adresse->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

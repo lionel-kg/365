@@ -3,7 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Repository\UserRepository;
+use App\Manager\UserManager;
+use App\Manager\AdresseManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,18 +27,15 @@ class UserController extends AbstractController
      /**
      * @Route("/user/create", name="create_user", methods={"POST"})
      */
-    public function createUser(Request $request, UserRepository $userRepository):JsonResponse
+    public function createUser(Request $request, UserManager $userManager,AdresseManager $adresseManager):JsonResponse
     {
         $data = json_decode($request->getContent(), true);
-        $username = $data['username'];
-        $password = $data['password'];
-        if (empty($username) || empty($password)) {
+
+        if (empty($data['username']) || empty($data['password'])) {
             throw new NotFoundHttpException('Expecting mandatory parameters!');
         }
-            $userRepository->addUser($username,$password);
+            $userManager->createUser($data);
         return new JsonResponse(['status' => 'User created!'], Response::HTTP_CREATED);
-    
-
     }
     
 }
