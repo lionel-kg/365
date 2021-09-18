@@ -2,7 +2,7 @@
 
 1. Git clone
 
-   	$ git clone https://github.com/lionel-kg/365.git
+   		$ git clone https://github.com/lionel-kg/365.git
 
 2. installer les dépendances si besoin
    
