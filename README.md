@@ -14,7 +14,7 @@
   
   	- modifier la ligne DATABASE_URL
   
-  - créer la bd a l'aide de la commande
+  	- créer la bd a l'aide de la commande
       
 		$ bin/console doctrine:schema:create
 
