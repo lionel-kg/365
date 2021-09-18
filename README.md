@@ -16,7 +16,7 @@
   
   	- créer la bd a l'aide de la commande
       
-		$ bin/console doctrine:schema:create
+			$ bin/console doctrine:schema:create
 
 
 
