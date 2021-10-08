@@ -37,5 +37,16 @@ class UserController extends AbstractController
             $userManager->createUser($data);
         return new JsonResponse(['status' => 'User created!'], Response::HTTP_CREATED);
     }
-    
+    /**
+     *  @Route("/admin/user/edit", name="edit_user",methods={"PUT"})
+     */
+    public function editUser(Request $request, UserManager $userManager, AdresseManager $adresseManager)
+    {
+        $data = json_decode($request->getContent(), true);
+        $user = $this->getDoctrine()
+                ->getRepository(User::class)
+                ->find($data["id"]);
+        $userManager->editUser($user,$data);
+        return new JsonResponse(['status' => 'User Updated!'], Response::HTTP_CREATED);
+    }
 }

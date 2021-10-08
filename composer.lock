@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e232ebc6d27af6f8b1690268de95b73c",
+    "content-hash": "07594eb5110a1a29a0a140a90c4f6653",
     "packages": [
         {
             "name": "brick/math",
@@ -2285,16 +2285,16 @@
         },
         {
             "name": "lexik/jwt-authentication-bundle",
-            "version": "v2.11.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lexik/LexikJWTAuthenticationBundle.git",
-                "reference": "f0a91712b4554454e6d28c648567e9381408e2d6"
+                "reference": "ae90ae203fd419444503b3337cfd9f14e3f0f829"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lexik/LexikJWTAuthenticationBundle/zipball/f0a91712b4554454e6d28c648567e9381408e2d6",
-                "reference": "f0a91712b4554454e6d28c648567e9381408e2d6",
+                "url": "https://api.github.com/repos/lexik/LexikJWTAuthenticationBundle/zipball/ae90ae203fd419444503b3337cfd9f14e3f0f829",
+                "reference": "ae90ae203fd419444503b3337cfd9f14e3f0f829",
                 "shasum": ""
             },
             "require": {
@@ -2379,7 +2379,7 @@
             ],
             "support": {
                 "issues": "https://github.com/lexik/LexikJWTAuthenticationBundle/issues",
-                "source": "https://github.com/lexik/LexikJWTAuthenticationBundle/tree/v2.11.2"
+                "source": "https://github.com/lexik/LexikJWTAuthenticationBundle/tree/master"
             },
             "funding": [
                 {
@@ -2391,7 +2391,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-17T22:02:40+00:00"
+            "time": "2021-09-13T12:28:01+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -9350,5 +9350,5 @@
         "ext-iconv": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

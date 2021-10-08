@@ -21,15 +21,34 @@ class UserManager{
         $this->em = $em;
     }
 
-    public function createUser($data){
-        $user = new User();
+    public function prepareForCreate($user, $data){
         $user->setUsername($data['username']);
         $user->setNom($data['nom']);
         $user->setPrenom($data['prenom']);
         $user->setPays($data['pays']);
-        $user->setPassword($this->passwordEncoder->encodePassword($user,$data['password']));
         $adresse = $this->adresseManager->createAdresse($data['adresse'],$user);
         $user->addAdresse($adresse); 
+    }
+    public function prepareForEdit($user, $data){
+        $user->setNom($data['nom']);
+        $user->setPrenom($data['prenom']);
+        if(isset($data['adresse'])){
+            $adresse = $this->adresseManager->createAdresse($data['adresse'],$user);
+            $user->addAdresse($adresse); 
+        }
+        
+    }
+
+    public function createUser($data){
+        $user = new User();
+        $user->setPassword($this->passwordEncoder->encodePassword($user,$data['password']));
+        $this->prepareForCreateAndEdit($user,$data);
+        $this->em->persist($user);
+        $this->em->flush();
+    }
+
+    public function editUser($user, $data){
+        $this->prepareForEdit($user,$data);
         $this->em->persist($user);
         $this->em->flush();
     }
